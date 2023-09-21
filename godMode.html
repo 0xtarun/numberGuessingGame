@@ -32,17 +32,18 @@
                 <button style="width: 100%;" class="btn btn-block btn-primary mb-2" id="submitBtn">Submit</button>
             </div>
             <div class="col-12">
-                <button style="width:100%;" class="btn btn-block btn-primary mb-2" onclick="window.location.reload()">Reset</button>
+                <button style="width:100%;" class="btn btn-block btn-primary mb-2"
+                    onclick="window.location.reload()">Reset</button>
             </div>
             <div class="col-12">
                 <a style="width: 100%;" href="level.html" class="btn btn-block btn-primary mb-5">Back</a>
             </div>
             <br>
             <span class="text-center text-warning" style="font-weight: bold;" type="text" id="result"><span
-                style="color:rgb(249, 203, 98)">You have ∞ turns</span><br> # should be a
-            number from 1 to 10!</span>
+                    style="color:rgb(249, 203, 98)">You have ∞ turns</span><br> # should be a
+                number from 1 to 10!</span>
         </div>
-       
+
     </div>
 
     <script>
@@ -53,6 +54,7 @@
             guesses += 1;
             if (guess == answer) {
                 document.getElementById("result").innerHTML = `<span style="color:LightGreen;"> ${answer} is the right number. It took you ${guesses} guesses.</span>`;
+                document.getElementById("submitBtn").disabled = true;
             }
             else if (guess < answer) {
                 document.getElementById("result").innerHTML = ` <span style="color: tomato;"> Wrong  (hint : #>${guess})</span>`;
