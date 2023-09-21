@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body class="bg-dark text-light">
+    <div class="container-fluid">
+        <div class="row bg-success mb-5">
+            <div class="col-12 align-items-center p-2">
+                <h1 class="text-center text-light">Number Guessing Game</h1>
+            </div>
+        </div>
+        <h1 class="text-center"><span style="color:rgb(170, 108, 228)">Level : Easy</span></h1>
+        <h1 class="text-center mb-5">#?</h1>
+        <div class="row">
+            <div class="col-7 text-center mb-5">
+                <h3><label for="numberInput">Guess the number :</label></h3>
+            </div>
+            <div class="col-5 text-center mb-5">
+                <input style="max-width: 100%;" type="number" id="numberInput">
+            </div>
+            <div class="col-12">
+                <button style="width: 100%;" class="btn btn-block btn-primary mb-2" id="submitBtn">Submit</button>
+            </div>
+            <div class="col-12">
+                <button style="width:100%;" class="btn btn-block btn-primary mb-2"
+                    onclick="window.location.reload()">Reset</button>
+            </div>
+            <div class="col-12">
+                <a style="width: 100%;" href="level.html" class="btn btn-block btn-primary mb-5">Back</a>
+            </div>
+            <br>
+            <span class="text-center text-warning" style="font-weight: bold;" type="text" id="result"><span
+                    style="color:rgb(249, 203, 98)">You have total 4 turns</span><br> # should be a
+                number from 1 to 10!</span>
+        </div>
+    </div>
+
+    <script>
+        const answer = Math.floor(Math.random() * 10 + 1);
+        let guesses = 0;
+        const maxGuesses = 4;
+        document.getElementById("submitBtn").onclick = function () {
+            let guess = document.getElementById("numberInput").value;
+
+            if (guesses < maxGuesses) {
+                guesses += 1;
+                if (guess == answer) {
+                    document.getElementById("result").innerHTML = `<span style="color:LightGreen;"><span>You Won</span><br> ${answer} is the right number. It took you ${guesses} guesses.</span>`;
+                }
+                else if (guess < answer) {
+                    document.getElementById("result").innerHTML = ` <span style="color: tomato;"> Wrong  (hint : #>${guess})</span>`;
+                    document.getElementById("result").innerHTML += `<br><span style="color:tomato;">${maxGuesses - guesses} turns left</span>`;
+                    if (guesses === maxGuesses) {
+                        document.getElementById("result").innerHTML = `<span style="color:tomato;">You Lost! <br>${answer} was the right number!</span>`;
+                    }
+                }
+                else {
+                    document.getElementById("result").innerHTML = `<span style="color:tomato;"> Wrong  (hint : #<${guess})</span>`;
+                    document.getElementById("result").innerHTML += `<br><span style="color:tomato;">${maxGuesses - guesses} turns left</span>`;
+                    if (guesses === maxGuesses) {
+                        document.getElementById("result").innerHTML = `<span style="color:tomato;">You Lost! <br>${answer} was the right number!</span>`;
+                    }
+                }
+                document.getElementById("numberInput").value = "";
+
+            }
+
+
+        }
+
+
+    </script>
+</body>
+
+</html>
