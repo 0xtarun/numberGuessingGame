@@ -58,6 +58,7 @@
                 guesses += 1;
                 if (guess == answer) {
                     document.getElementById("result").innerHTML = `<span style="color:LightGreen;"><span>You Won</span><br> ${answer} is the right number. It took you ${guesses} guesses.</span>`;
+                    document.getElementById("submitBtn").disabled = true;
                 }
                 else if (guess < answer) {
                     document.getElementById("result").innerHTML = ` <span style="color: tomato;"> Wrong  (hint : #>${guess})</span>`;
@@ -74,6 +75,9 @@
                     }
                 }
                 document.getElementById("numberInput").value = "";
+                if(guesses==maxGuesses){
+                    document.getElementById("submitBtn").disabled = true;
+                }
 
             }
 
